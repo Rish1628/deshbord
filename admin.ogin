@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login - WINZONE 360</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #fff9c4, #ffd700);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      width: 90%;
+      max-width: 400px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #FFD700;
+      font-size: 22px;
+    }
+
+    .icon {
+      text-align: center;
+      font-size: 40px;
+    }
+
+    input {
+      width: 95%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #FFD700;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    label {
+      font-size: 13px;
+      float: left;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #FFD700;
+      color: black;
+      border: none;
+      font-weight: bold;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    .captcha-box {
+      margin-top: 10px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .captcha-box input {
+      width: 50%;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">🔐</div>
+    <h1>Admin Login - WINZONE 360</h1>
+
+    <input type="text" id="loginMobile" placeholder="Mobile Number" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
+
+    <div class="captcha-box">
+      <label>Please solve: 4 + 2 = ?</label><br>
+      <input type="text" id="captchaLogin">
+    </div>
+
+    <button onclick="adminLogin()">Login</button>
+  </div>
+
+  <script>
+    function adminLogin() {
+      const mobile = document.getElementById("loginMobile").value.trim();
+      const password = document.getElementById("loginPassword").value.trim();
+      const captcha = document.getElementById("captchaLogin").value.trim();
+
+      if (captcha !== "6") {
+        alert("Please enter the correct captcha.");
+        return;
+      }
+
+      if (mobile === "9999999999" && password === "admin123") {
+        alert("Admin login successful");
+        localStorage.setItem("role", "admin");
+        window.location.href = "admin.html";
+      } else {
+        alert("Invalid admin credentials");
+      }
+    }
+  </script>
+</body>
+</html>
